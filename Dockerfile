@@ -30,5 +30,3 @@ USER 1001
 
 # Expose/set the default port for this test application
 EXPOSE 8080
-
-CMD ["/usr/libexec/s2i/usage"]
