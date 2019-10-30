@@ -2,19 +2,9 @@
 
 set -e
 
-export GO_REPO=$(echo $OPENSHIFT_BUILD_SOURCE | sed --expression='s/\.git//g' | sed --expression='s/https:\/\///g')
-
-mkdir -p $GOPATH/src/$GO_REPO
-
 echo "---> Preparing source... $SOURCE"
-
-cp -ar /opt/app-root/destination/src/* $GOPATH/src/$GO_REPO
-
-rm -rf /opt/app-root/destination/src/*
 
 #echo "---> Downloading dependencies..."
 #go get -v ./...
 
-go build -o goexec $GO_REPO
-
-fix-permissions ./
+go build -o /opt/app-root/goexec .

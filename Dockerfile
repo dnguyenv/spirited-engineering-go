@@ -12,18 +12,17 @@ ENV PATH $PATH:$GOROOT/bin:$GOBIN
 LABEL io.k8s.description="Spirited Engineering Go s2i experiment. Based on GO ${GOLANG_VERSION}." \
       io.k8s.display-name="golang builder v${GOLANG_VERSION}" \
       io.openshift.expose-services="8080:http" \
-      io.openshift.tags="openshift,golang" \
-      io.openshift.s2i.destination="/opt/app-root/destination"
+      io.openshift.tags="openshift,golang"
 
 # Install golang runtime on CentOS7
-#RUN curl https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz -o /tmp/go.tar.gz && tar -C /usr/local -zxf /tmp/go.tar.gz
+RUN curl https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz -o /tmp/go.tar.gz && tar -C /usr/local -zxf /tmp/go.tar.gz
 
 COPY ./s2i/bin/ /usr/libexec/s2i
 
 # Make the content of /opt/app-root owned by user 1001
-RUN chown -R 1001:1001 ${HOME}
+RUN chown -R 1001:1001 /opt/app-root
 
-WORKDIR ${HOME}
+WORKDIR /opt/app-root
 
 # Default user was created in the openshift/base-centos7 image
 USER 1001
