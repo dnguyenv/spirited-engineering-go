@@ -8,4 +8,6 @@ ls -la /tmp/src
 
 export GOPATH=/tmp/src
 
-go build -o /opt/app-root/goexec /tmp/src/
+cd GOPATH=/tmp/src
+
+go build -o /opt/app-root/goexec .
