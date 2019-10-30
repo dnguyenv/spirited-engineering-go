@@ -4,5 +4,8 @@ echo "---> Preparing source...$HOME"
 
 #echo "---> Downloading dependencies..."
 #go get -v ./...
-ls -la
-go build -o /opt/app-root/goexec .
+ls -la /tmp/src
+
+export GOPATH=/tmp/src
+
+go build -o /opt/app-root/goexec /tmp/src/
