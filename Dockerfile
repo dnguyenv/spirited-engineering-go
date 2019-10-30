@@ -17,7 +17,7 @@ LABEL io.k8s.description="Spirited Engineering Go s2i experiment. Based on GO ${
 # Install golang runtime on CentOS7
 RUN curl https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz -o /tmp/go.tar.gz && tar -C /usr/local -zxf /tmp/go.tar.gz
 
-COPY ./s2i/bin/ /usr/libexec/s2i
+#COPY ./s2i/bin/ /usr/libexec/s2i
 
 # Make the content of /opt/app-root owned by user 1001
 RUN chown -R 1001:1001 /opt/app-root
