@@ -1,13 +1,5 @@
 #!/bin/bash
 set -e
 echo "---> Preparing source...$HOME"
-
-#echo "---> Downloading dependencies..."
-#go get -v ./...
-ls -la /tmp/src
-
-export GOPATH=/tmp/src
-
-cd $GOPATH
-
+cd /tmp/src
 go build -o /opt/app-root/goexec .
