@@ -1,4 +1,3 @@
 #!/bin/bash -e
-# Simply execute the app
 
 exec /opt/app-root/goexec $ARGS

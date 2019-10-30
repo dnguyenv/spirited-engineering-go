@@ -1,10 +1,8 @@
 #!/bin/bash
-
 set -e
-
-echo "---> Preparing source... $SOURCE"
+echo "---> Preparing source...$HOME"
 
 #echo "---> Downloading dependencies..."
 #go get -v ./...
-
+ls -la
 go build -o /opt/app-root/goexec .
