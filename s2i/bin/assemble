@@ -2,33 +2,19 @@
 
 set -e
 
-echo
-echo "===> Build started at $(date)"
-echo
-START=$SECONDS
+export GO_REPO=$(echo $OPENSHIFT_BUILD_SOURCE | sed --expression='s/\.git//g' | sed --expression='s/https:\/\///g')
 
-# Unconditionally print elapsed build time at exit
-function finish {
-  echo "===> Elapsed time: $(($SECONDS - $START)) seconds"
-}
-trap finish EXIT
+mkdir -p $GOPATH/src/$GO_REPO
 
 echo "---> Preparing source... $SOURCE"
-mkdir -p $SOURCE
 
-cp -Rf /tmp/src/. $SOURCE
+cp -ar /opt/app-root/destination/src/* $GOPATH/src/$GO_REPO
 
-cd $SOURCE
+rm -rf /opt/app-root/destination/src/*
 
-echo "---> Downloading dependencies..."
-go get -v ./...
+#echo "---> Downloading dependencies..."
+#go get -v ./...
 
-echo "---> Building application source..."
-go build -v -o main
-go install main
+go build -o goexec $GO_REPO
 
-echo
-echo "===> Build completed at $(date)"
-
-# Fix source directory permissions
 fix-permissions ./
