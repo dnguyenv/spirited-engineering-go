@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
-echo "---> Preparing source...$HOME"
-cd /tmp/src
+echo "---> Preparing source..."
+mkdir -p $S2I_DESTINATION
+cd $S2I_DESTINATION
 go build -o /opt/app-root/goexec .
