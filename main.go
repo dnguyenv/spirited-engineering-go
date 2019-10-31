@@ -21,7 +21,7 @@ func main() {
 	http.HandleFunc("/", idx)
 	http.HandleFunc("/about", about)
 	http.HandleFunc("/contact", contact)
-	http.HandleFunc("/apply", apply)
+	http.HandleFunc("/register", register)
 	http.HandleFunc("/favicon.ico", http.NotFound)
 	http.ListenAndServe(":8080", nil)
 }
@@ -57,16 +57,16 @@ func contact(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 }
-func apply(w http.ResponseWriter, r *http.Request) {
+func register(w http.ResponseWriter, r *http.Request) {
 	var firstName string
 	pd := pageData{
-		Title: "Apply page",
+		Title: "Register page",
 	}
 	if r.Method == http.MethodPost {
 		firstName = r.FormValue("fname")
 		pd.FirstName = firstName
 	}
-	err := tpl.ExecuteTemplate(w, "apply.gohtml", pd)
+	err := tpl.ExecuteTemplate(w, "register.gohtml", pd)
 	if err != nil {
 		log.Println(err)
 	}

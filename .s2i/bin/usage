@@ -1,10 +1,10 @@
 #!/bin/bash -e
 
-IMAGEVER=$($GO_VERSION | sed s/\.//)
-
 cat <<EOF
+
 This is a S2I sample builder image, to use it, install
 https://github.com/openshift/source-to-image
+
 1. Spirited Engineering 
-2. Go for a living ...
+2. Learn Go for a living ...
 EOF
