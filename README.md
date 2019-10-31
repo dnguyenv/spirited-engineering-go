@@ -88,3 +88,45 @@ You now can access your app from a browser with this url (HOST/PORT value in the
 
 Now you have the application deployed from your source code on github all the way to your OpenShift cluster. Lets do 1 step further which is to make the application got deployed automatically whenever you've pushed changes to the code on github. There are different ways to do that but in this example, I'll walk you through how to do it with Webhook
 
+### Get the webhook endpoint of the app
+
+Assuming you're still logged into your OpenShift cluster, run this command to get the webhook endpoint of the app
+
+```bash
+$ oc describe bc/<your-build-config>
+```
+
+The endpoint will show how under `Webhook GitHub` section. You can grep the URL against the output
+
+Example:
+
+```bash
+$ oc describe bc/spirited-engineering-go | grep -E 'webhook.*github'
+```
+
+You will see something like this:
+
+```bash
+$ oc describe bc/spirited-engineering-go | grep -E 'webhook.*github'
+	URL:	https://console-openshift-console.apps.se.os.fyre.se.com:6443/apis/build.openshift.io/v1/namespaces/spirited-engineering/buildconfigs/spirited-engineering-go/webhooks/<secret>/github
+```
+
+So now you need the secret value to have the complete webhook. You can find that out by
+
+```bash
+$ oc get bc/<your-build-config> -o template --template '{{index .spec.triggers 0}} {{"\n"}}'
+```
+
+Example:
+
+```bash
+$ oc get bc/spirited-engineering-go -o template --template '{{index .spec.triggers 0}} {{"\n"}}'
+```
+
+### Configure webhook for your github repo
+
+Once you have the webhook endpoint, you can create a github webhook on your source code repo by going to `https://github.com/<your-github-id>/<your-repo>/settings/hooks` (example: `https://github.com/dnguyenv/spirited-engineering-go/settings/hooks`)
+
+Something like this:
+
+![Webhook configuration for github](public/images/webhook.png)
