@@ -29,10 +29,10 @@ func main() {
 func idx(w http.ResponseWriter, r *http.Request) {
 
 	pd := pageData{
-		Title: "Index page",
+		Title: "Home page",
 	}
 
-	err := tpl.ExecuteTemplate(w, "index.gohtml", pd)
+	err := tpl.ExecuteTemplate(w, "home.gohtml", pd)
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
@@ -46,6 +46,7 @@ func about(w http.ResponseWriter, r *http.Request) {
 	err := tpl.ExecuteTemplate(w, "about.gohtml", pd)
 	if err != nil {
 		log.Println(err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
 	}
 }
 func contact(w http.ResponseWriter, r *http.Request) {
@@ -55,6 +56,7 @@ func contact(w http.ResponseWriter, r *http.Request) {
 	err := tpl.ExecuteTemplate(w, "contact.gohtml", pd)
 	if err != nil {
 		log.Println(err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
 	}
 }
 func register(w http.ResponseWriter, r *http.Request) {
@@ -69,5 +71,6 @@ func register(w http.ResponseWriter, r *http.Request) {
 	err := tpl.ExecuteTemplate(w, "register.gohtml", pd)
 	if err != nil {
 		log.Println(err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
 	}
 }
