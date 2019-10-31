@@ -84,6 +84,10 @@ spirited-engineering-go   spirited-engineering-go-spirited-engineering.apps.se.o
 
 You now can access your app from a browser with this url (HOST/PORT value in the output of `oc get routes`): https://spirited-engineering-go-spirited-engineering.apps.se.os.fyre.se.com
 
+Here is what you may see from this Go web application example:
+
+![App runs](public/images/app.png)
+
 ## Enable CI/CD 
 
 Now you have the application deployed from your source code on github all the way to your OpenShift cluster. Lets do 1 step further which is to make the application got deployed automatically whenever you've pushed changes to the code on github. There are different ways to do that but in this example, I'll walk you through how to do it with Webhook
