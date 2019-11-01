@@ -1,6 +1,14 @@
-# Spirited Engineering: OpenShift 4 S2I and Webhook
+# OpenShift 4 S2I and Webhook
+
+Source-to-Image (S2I) is a framework that makes it easy to write container images that take application source code as an input and produce a new image that runs the assembled application as output. The main advantage of using S2I for building reproducible container images is the ease of use for developers.
+
+As a developer, you don't need to worry about how your application is being containerized and deployed, you just need to work on your code then deliver to github. OpenShift will take care of the rest, to make it available to end users. 
 
 In this tutorial, we will discuss about how to deploy a Golang web application on OpenShift 4 via source to image (aka s2i) framework. We will also talk about how to enable CI/CD using webhook
+
+Here is the architecture overview of the tutorial
+
+![Architecture overview](public/images/arch.png)
 
 ***Note:*** I use MacOS for this tutorial
 
@@ -9,6 +17,14 @@ In this tutorial, we will discuss about how to deploy a Golang web application o
 - A OpenShift cluster
 - Github account (https://github.com)
 - OpenShift cli client (aka `oc`) (run `$ brew update && brew install openshift-cli` on your Mac) terminal
+
+## The app
+
+The example application used in this tutorial is a simple Go web app that has a menu to navigate among different pages. The Register page is an html form for the user to submit a name, then the Go server code handles the request and sends the name back for displaying on the page. The app covers how to work with templates in Go.
+
+You can fork the app from here to your git and modify based on your needs: https://github.com/dnguyenv/spirited-engineering-go.git 
+
+![App runs](public/images/app.png)
 
 ## Login to your OpenShift cluster 
 
