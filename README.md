@@ -1,4 +1,4 @@
-# OpenShift 4 S2I and Webhook
+# Enable CI/CD in OpenShift 4 using S2I and Webhook
 
 Source-to-Image (S2I) is a framework that makes it easy to write container images that take application source code as an input and produce a new image that runs the assembled application as output. The main advantage of using S2I for building reproducible container images is the ease of use for developers.
 
