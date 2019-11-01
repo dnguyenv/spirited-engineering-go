@@ -176,3 +176,5 @@ Once you have the webhook endpoint, you can create a github webhook on your sour
 Something like this:
 
 ![Webhook configuration for github](public/images/webhook.png)
+
+Now, whenever you push (or merge) any changes into your repo, the webook will send a notification to OpenShift and the changes will be packaged into container(s), deployed and serve the end users. 
