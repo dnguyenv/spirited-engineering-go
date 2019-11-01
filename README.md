@@ -22,9 +22,35 @@ Here is the architecture overview of the tutorial
 
 The example application used in this tutorial is a simple Go web app that has a menu to navigate among different pages. The Register page is an html form for the user to submit a name, then the Go server code handles the request and sends the name back for displaying on the page. The app covers how to work with templates in Go.
 
-You can fork the app from here to your git and modify based on your needs: https://github.com/dnguyenv/spirited-engineering-go.git 
+Here is the structure of the code
 
-![App runs](public/images/app.png)
+![Code structure](public/images/code.png)
+
+As required by s2i framework, we need to provide `assemble` and `run` scripts as minimum to instruct how the code is built and how the built code is executed
+
+`assemble` script:
+
+```bash
+#!/bin/bash
+set -e
+echo "---> Preparing source..."
+mkdir -p $S2I_DESTINATION
+cd $S2I_DESTINATION
+cp -r /tmp/src/* $S2I_DESTINATION/
+go build -o /opt/app-root/goexec .
+```
+
+`run` script:
+
+```bash
+#!/bin/bash -e
+cd $S2I_DESTINATION
+/opt/app-root/goexec
+```
+
+Notice that you can put all environment variables necessary for the scripts in the `environment` file placed in `.s2i` directory
+
+You can fork the code from here to your git and modify based on your needs: https://github.com/dnguyenv/spirited-engineering-go.git 
 
 ## Login to your OpenShift cluster 
 
